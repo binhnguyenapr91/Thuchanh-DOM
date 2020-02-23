@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+    <h1>This is h1 element</h1>
+    <div id="container">
+        <button type="button" onclick="getChildNodes()">Get ChildNode's name</button>
+        <p>This is my childNode's name list:</p>
+        <div id="outputChildNodeNames"></div>
+        <button type="button" onclick="getParentNode()">Get ParentNode's name</button>
+        <p>This is my parentNode's name:</p>
+        <div id="outputParentNodeName"></div>
+        <button type="button" onclick="addNewChildNode()">Add new ChildNode</button>
+        <p>Add new childNode:</p><div id="outputNewChildNodeNames"></div>
+        <button type="button" onclick="removeChildNode()">Remove ChildNode</button>
+    </div>
+    <script>
+        function getChildNodes(){
+            let childNodes = document.getElementById("container").childNodes;
+            let childNodeName ="";
+            let index;
+            for (index=0;index<childNodes.length;index++){
+                childNodeName += childNodes[index].nodeName + "<br>";
+            }
+            document.getElementById("outputChildNodeNames").innerHTML = childNodeName;
+        }
+        function getParentNode(){
+            let parentNodeElementName =document.getElementById("container").parentNode.nodeName;
+            document.getElementById("outputParentNodeName").innerHTML = parentNodeElementName;
+        }
+        function addNewChildNode() {
+            let newBie = document.createElement("div");
+            newBie.id = "newBie";
+            let fatherOfNewBie = document.getElementById("container").appendChild(newBie);
+            getChildNodes();
+        }
+
+        function removeChildNode(){
+            let child = document.getElementById("newBie")
+            let dad = document.getElementById("container");
+            dad.removeChild(child);
+            getChildNodes();
+        }
+
+    </script>
+</body>
+</html>
